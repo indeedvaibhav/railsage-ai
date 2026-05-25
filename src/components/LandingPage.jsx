@@ -289,3 +289,5 @@ export default function LandingPage({ onRevealDashboard, onComplete, dashboardRe
 }
 
 /* Setup LandingPage component structure */
+
+/* Add GSAP animations for landing page */
