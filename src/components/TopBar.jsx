@@ -150,3 +150,5 @@ export default function TopBar({ onToggleSidebar, sidebarOpen }) {
 }
 
 /* Create TopBar component */
+
+/* Add search functionality to TopBar */
