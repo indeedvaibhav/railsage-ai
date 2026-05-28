@@ -269,3 +269,5 @@ export default function TrainMap() {
 }
 
 /* Add train map placeholder */
+
+/* Integrate train context with map */

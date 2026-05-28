@@ -243,3 +243,5 @@ const STATION_COORDS = {
 };
 
 /* Setup base context structure */
+
+/* Integrate train context with map */
