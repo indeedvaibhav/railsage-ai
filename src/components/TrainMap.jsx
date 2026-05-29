@@ -271,3 +271,5 @@ export default function TrainMap() {
 /* Add train map placeholder */
 
 /* Integrate train context with map */
+
+/* Implement Leaflet map with Carto tiles */
