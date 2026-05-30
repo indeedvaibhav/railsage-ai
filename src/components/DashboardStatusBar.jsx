@@ -129,3 +129,5 @@ export default function DashboardStatusBar() {
 /* Create dashboard status bar */
 
 /* Add live clock to status bar */
+
+/* Implement timezone toggles (IST/JST/UTC) */
