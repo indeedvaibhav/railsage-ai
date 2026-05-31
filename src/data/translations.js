@@ -206,3 +206,5 @@ const translations = {
 export default translations;
 
 /* Add English translations */
+
+/* Add Hindi and Japanese translations */
