@@ -100,3 +100,5 @@ function Dashboard() {
 export default memo(Dashboard);
 
 /* Setup base dashboard layout */
+
+/* Integrate i18n into dashboard */
