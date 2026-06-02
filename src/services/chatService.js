@@ -31,3 +31,5 @@ export async function sendMessage(messages, { trainContext = '', language = 'en'
 }
 
 /* Create chat service placeholder */
+
+/* Integrate Claude API for chat */
