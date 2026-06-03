@@ -339,3 +339,5 @@ export function AgentProvider({ children }) {
 }
 
 /* Setup Agent context */
+
+/* Define 4 scenario events */
