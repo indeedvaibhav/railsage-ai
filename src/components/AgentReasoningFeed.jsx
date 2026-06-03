@@ -81,3 +81,5 @@ export default function AgentReasoningFeed() {
 }
 
 /* Create agent reasoning feed UI */
+
+/* Add auto-scroll to reasoning feed */
