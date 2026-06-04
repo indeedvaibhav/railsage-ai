@@ -75,3 +75,5 @@ export default function IncidentCard() {
 }
 
 /* Create incident card component */
+
+/* Add approve and override functionality */
