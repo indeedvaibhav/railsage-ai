@@ -53,3 +53,5 @@ export default function ScenarioSimulator() {
 }
 
 /* Create scenario simulator shell */
+
+/* Wire scenario simulator to context */
