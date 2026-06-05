@@ -64,3 +64,5 @@ export default function AnnouncementsPanel() {
 }
 
 /* Implement multilingual announcements panel */
+
+/* Add broadcast action to announcements */
