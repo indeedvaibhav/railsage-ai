@@ -106,3 +106,5 @@ export default function TrainDetailPanel() {
 }
 
 /* Create train detail panel */
+
+/* Wire train selection to detail panel */
