@@ -56,3 +56,5 @@ export default function TrainListPanel() {
 /* Setup train list panel */
 
 /* Populate train list with live data */
+
+/* Add color-coded delay badges */
