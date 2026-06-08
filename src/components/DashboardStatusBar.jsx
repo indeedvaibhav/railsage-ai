@@ -135,3 +135,5 @@ export default function DashboardStatusBar() {
 /* Enhance status bar with count-up animations */
 
 /* Add left border accents to metrics */
+
+/* Implement smooth agent pulse animation */
