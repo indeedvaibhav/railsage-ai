@@ -133,3 +133,5 @@ export default function DashboardStatusBar() {
 /* Implement timezone toggles (IST/JST/UTC) */
 
 /* Enhance status bar with count-up animations */
+
+/* Add left border accents to metrics */
