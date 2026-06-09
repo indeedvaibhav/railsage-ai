@@ -104,3 +104,5 @@ export default memo(Dashboard);
 /* Integrate i18n into dashboard */
 
 /* Trigger ticket modal from dashboard */
+
+/* Restructure dashboard to 3-column layout */
