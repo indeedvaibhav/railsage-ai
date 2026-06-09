@@ -49,3 +49,5 @@ export default function MobileTabBar({ activeTab, onTabChange }) {
 }
 
 /* Add mobile tab bar shell */
+
+/* Implement bottom tab navigation for mobile */
