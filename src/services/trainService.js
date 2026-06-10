@@ -152,3 +152,5 @@ export function getStatusInfo(status, lang = 'en') {
 }
 
 /* Add train service for real API calls */
+
+/* Integrate rapid api shape normalizers */
