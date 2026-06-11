@@ -275,3 +275,5 @@ export default function TrainMap() {
 /* Implement Leaflet map with Carto tiles */
 
 /* Add train markers to map */
+
+/* Add pulse badge for signal faults on map */
