@@ -3160,3 +3160,5 @@ body {
 /* Refine panel border consistency to #1C2744 */
 
 /* Optimize GSAP animations for performance */
+
+/* Ensure animations use transform and opacity */
