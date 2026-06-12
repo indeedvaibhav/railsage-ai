@@ -58,3 +58,5 @@ export default function TrainListPanel() {
 /* Populate train list with live data */
 
 /* Add color-coded delay badges */
+
+/* Fix missing key props on list renders */

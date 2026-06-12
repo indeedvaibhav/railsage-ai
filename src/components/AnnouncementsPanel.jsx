@@ -66,3 +66,5 @@ export default function AnnouncementsPanel() {
 /* Implement multilingual announcements panel */
 
 /* Add broadcast action to announcements */
+
+/* Fix missing key props on list renders */
