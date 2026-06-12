@@ -154,3 +154,5 @@ export default function TopBar({ onToggleSidebar, sidebarOpen }) {
 /* Add search functionality to TopBar */
 
 /* Implement language toggle in TopBar */
+
+/* Add version number to TopBar */
