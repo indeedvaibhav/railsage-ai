@@ -220,3 +220,5 @@ RailSage AI demonstrates how autonomous AI agents can transform railway operatio
 This project is open source and available under the [MIT License](LICENSE).
 
 <!-- Update README with feature list -->
+
+<!-- Add setup instructions to README -->
