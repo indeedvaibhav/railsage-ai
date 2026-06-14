@@ -30,7 +30,7 @@ export default function App() {
           <div className="app-shell">
             <Suspense fallback={null}>
               {dashboardMounted && (
-                <div ref={dashboardRef} className="dashboard-layer">
+                <div ref={dashboardRef} className={`dashboard-layer ${!showLanding ? 'dashboard-active' : ''}`}>
                   <Dashboard />
                 </div>
               )}
