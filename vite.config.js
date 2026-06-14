@@ -19,3 +19,5 @@ export default defineConfig({
 });
 
 /* Add vite config and html entry point */
+
+/* Ready for production build */
