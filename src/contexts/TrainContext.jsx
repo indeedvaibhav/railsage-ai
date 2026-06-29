@@ -43,14 +43,16 @@ export function TrainProvider({ children }) {
     return results;
   }, []);
 
-  // Select a train and fetch its live status + schedule
   const selectTrain = useCallback(async (train) => {
-    if (!train?.trainNumber) return;
-    setSelectedTrain(train);
-    setTrainStatus(null);
-    setTrainSchedule(null);
-    setWeather(null);
-    setLoading(true);
+  // Handle null — deselect
+  if (!train) {
+    setSelectedTrain(null)
+    setTrainStatus(null)
+    setTrainSchedule(null)
+    setWeather(null)
+    return
+  }
+  
 
     // Add to recent trains (no duplicates)
     setRecentTrains(prev => {

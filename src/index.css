@@ -4283,6 +4283,28 @@ body {
   color: #4a6a82;
 }
 
+.tracker-back-bar {
+  padding: 8px 12px;
+  border-bottom: 1px solid #1C2744;
+  flex-shrink: 0;
+}
+
+.tracker-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #4a6a82;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.15s;
+}
+
+.tracker-back-btn:hover { color: #00d4ff; }
+
 /* Add initial CSS base */
 
 /* Add cinematic film grain overlay */
