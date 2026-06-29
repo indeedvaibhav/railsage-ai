@@ -1,53 +1,28 @@
-const TABS = [
-  {
-    key: 'map',
-    label: 'Map',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-      </svg>
-    ),
-  },
-  {
-    key: 'feed',
-    label: 'AI Feed',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-  },
-  {
-    key: 'announcements',
-    label: 'Alerts',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      </svg>
-    ),
-  },
-];
+import { NavLink } from 'react-router-dom'
 
-export default function MobileTabBar({ activeTab, onTabChange }) {
+const tabs = [
+  { path: '/dashboard', label: 'Home',    icon: '⚡' },
+  { path: '/tracker',   label: 'Tracker', icon: '🗺️' },
+  { path: '/journey',   label: 'Journey', icon: '🧭' },
+  { path: '/alerts',    label: 'Alerts',  icon: '⚠️' },
+  { path: '/chat',      label: 'Chat',    icon: '💬' },
+]
+
+export default function MobileTabBar() {
   return (
-    <nav className="mobile-tab-bar" aria-label="Dashboard navigation">
-      {TABS.map((tab) => (
-        <button
-          key={tab.key}
-          className={`mobile-tab ${activeTab === tab.key ? 'mobile-tab-active' : ''}`}
-          onClick={() => onTabChange(tab.key)}
-          id={`mobile-tab-${tab.key}`}
-          aria-selected={activeTab === tab.key}
+    <nav className="mobile-tabbar">
+      {tabs.map(tab => (
+        <NavLink
+          key={tab.path}
+          to={tab.path}
+          className={({ isActive }) =>
+            `tab-item ${isActive ? 'tab-item--active' : ''}`
+          }
         >
-          {tab.icon}
-          <span className="mobile-tab-label">{tab.label}</span>
-        </button>
+          <span className="tab-icon">{tab.icon}</span>
+          <span className="tab-label">{tab.label}</span>
+        </NavLink>
       ))}
     </nav>
-  );
+  )
 }
-
-/* Add mobile tab bar shell */
-
-/* Implement bottom tab navigation for mobile */

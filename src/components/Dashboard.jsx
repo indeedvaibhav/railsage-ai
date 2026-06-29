@@ -1,110 +1,137 @@
-import { memo, useState } from 'react';
-import TopBar from './TopBar';
-import Sidebar from './Sidebar';
-import TrainMap from './TrainMap';
-import DisruptionBanner from './DisruptionBanner';
+import { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DashboardStatusBar from './DashboardStatusBar';
-import AgentReasoningFeed from './AgentReasoningFeed';
-import IncidentCard from './IncidentCard';
-import ScenarioSimulator from './ScenarioSimulator';
-import AnnouncementsPanel from './AnnouncementsPanel';
-import TrainListPanel from './TrainListPanel';
-import TrainDetailPanel from './TrainDetailPanel';
-import MaintenanceTicketModal from './MaintenanceTicketModal';
-import MobileTabBar from './MobileTabBar';
-import ChatPanel from './ChatPanel';
+import DisruptionBanner from './DisruptionBanner';
 import { useAgent } from '../contexts/AgentContext';
+import { useTrain } from '../contexts/TrainContext';
+import { BOOTSTRAP_TRAINS } from '../data/bootstrapData';
 
 function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [mobileTab, setMobileTab] = useState('map');
-  const [ticketModalOpen, setTicketModalOpen] = useState(false);
-  const { maintenanceTicket } = useAgent();
+  const navigate = useNavigate();
+  const { metrics, isRunning } = useAgent();
+  const { setSelectedTrain } = useTrain();
+
+  const quickActions = [
+    { icon: '🗺️', label: 'Track a Train',    sub: 'Live positions & status',  path: '/tracker' },
+    { icon: '🧭', label: 'Plan Journey',      sub: 'Find routes & timings',    path: '/journey' },
+    { icon: '⚠️', label: 'View Alerts',       sub: 'Incidents & AI reasoning', path: '/alerts'  },
+    { icon: '💬', label: 'Ask RailSage',      sub: 'Chat with AI assistant',   path: '/chat'    },
+  ];
 
   return (
-    <div className="app">
+    <div className="dashboard-page">
       {/* Scanline overlay */}
       <div className="scanline-overlay" aria-hidden="true" />
 
-      <TopBar
-        onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
-        sidebarOpen={sidebarOpen}
-      />
-
+      {/* Status bar — clock, KPIs, agent status */}
       <DashboardStatusBar />
 
-      <div className="app-body">
-        <Sidebar
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-        />
+      {/* Active disruption alert */}
+      <DisruptionBanner />
 
-        <main className="main-content">
-          <DisruptionBanner />
+      <div className="dashboard-content">
 
-          <div className="dashboard-grid">
-            {/* LEFT PANEL — Map + Train List + Train Detail */}
-            <div className={`dashboard-panel panel-left ${mobileTab === 'map' ? 'panel-mobile-visible' : ''}`}>
-              <div className="panel-section panel-map-area">
-                <TrainMap />
-              </div>
-              <TrainListPanel />
-              <TrainDetailPanel />
+        {/* Network health summary */}
+        <section className="dash-section">
+          <div className="dash-section-header">
+            <span className="dash-section-title">Network Overview</span>
+            <span className={`dash-agent-badge ${isRunning ? 'dash-agent-badge--active' : ''}`}>
+              <span className="dash-agent-dot" />
+              Agent {isRunning ? 'Active' : 'Paused'}
+            </span>
+          </div>
+
+          <div className="dash-health-grid">
+            <div className="dash-health-card dash-health-card--cyan">
+              <span className="dash-health-value">{metrics.activeTrains}</span>
+              <span className="dash-health-label">Active Trains</span>
             </div>
-
-            {/* CENTER PANEL — AI Reasoning + Incident + Scenario + Chat */}
-            <div className={`dashboard-panel panel-center ${mobileTab === 'feed' ? 'panel-mobile-visible' : ''}`}>
-              <AgentReasoningFeed />
-              <IncidentCard />
-              <ScenarioSimulator />
-              <div className="panel-section panel-chat-area">
-                <ChatPanel />
-              </div>
+            <div className="dash-health-card dash-health-card--green">
+              <span className="dash-health-value">{metrics.onTimePercent}%</span>
+              <span className="dash-health-label">On Time</span>
             </div>
-
-            {/* RIGHT PANEL — Announcements + Maintenance Ticket */}
-            <div className={`dashboard-panel panel-right ${mobileTab === 'announcements' ? 'panel-mobile-visible' : ''}`}>
-              <AnnouncementsPanel />
-              <div className="maintenance-ticket-trigger">
-                <button
-                  className="ticket-trigger-btn"
-                  onClick={() => setTicketModalOpen(true)}
-                  id="maintenance-ticket-btn"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                  {maintenanceTicket?.ticketNumber || 'MTX-0000'}
-                </button>
-              </div>
+            <div className="dash-health-card dash-health-card--amber">
+              <span className="dash-health-value">{metrics.delayedPercent}%</span>
+              <span className="dash-health-label">Delayed</span>
+            </div>
+            <div className="dash-health-card dash-health-card--red">
+              <span className="dash-health-value">{metrics.incidents}</span>
+              <span className="dash-health-label">Incidents</span>
             </div>
           </div>
-        </main>
+        </section>
+
+        {/* Quick actions */}
+        <section className="dash-section">
+          <div className="dash-section-header">
+            <span className="dash-section-title">Quick Actions</span>
+          </div>
+          <div className="dash-actions-grid">
+            {quickActions.map((action) => (
+              <button
+                key={action.path}
+                className="dash-action-card"
+                onClick={() => navigate(action.path)}
+              >
+                <span className="dash-action-icon">{action.icon}</span>
+                <span className="dash-action-label">{action.label}</span>
+                <span className="dash-action-sub">{action.sub}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Recent trains — top 4 only */}
+        <section className="dash-section">
+          <div className="dash-section-header">
+            <span className="dash-section-title">Active Trains</span>
+            <button
+              className="dash-see-all"
+              onClick={() => navigate('/tracker')}
+            >
+              See all →
+            </button>
+          </div>
+
+          <div className="dash-trains-list">
+            {BOOTSTRAP_TRAINS.slice(0, 4).map((train) => (
+              <button
+                key={train.trainNumber}
+                className="dash-train-card"
+                onClick={() => {
+                  setSelectedTrain(train);
+                  navigate('/tracker');
+                }}
+              >
+                <div className="dash-train-left">
+                  <span className="dash-train-number">{train.trainNumber}</span>
+                  <span className="dash-train-name">{train.trainName}</span>
+                  <span className="dash-train-route">
+                    {train.from} → {train.to}
+                  </span>
+                </div>
+                <div className="dash-train-right">
+                  <span className={`dash-train-status dash-train-status--${
+                    train.status === 'on-time' ? 'green'
+                    : train.status === 'delayed' ? 'amber'
+                    : 'red'
+                  }`}>
+                    {train.status === 'on-time' ? 'ON TIME'
+                      : train.status === 'delayed' ? `+${train.delayMinutes}m`
+                      : 'CANCELLED'}
+                  </span>
+                  {train.currentStation && (
+                    <span className="dash-train-station">@ {train.currentStation}</span>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
       </div>
-
-      {/* Mobile tab bar */}
-      <MobileTabBar activeTab={mobileTab} onTabChange={setMobileTab} />
-
-      {/* Maintenance ticket modal */}
-      {ticketModalOpen && (
-        <MaintenanceTicketModal
-          ticket={maintenanceTicket}
-          onClose={() => setTicketModalOpen(false)}
-        />
-      )}
     </div>
   );
 }
 
 export default memo(Dashboard);
-
-/* Setup base dashboard layout */
-
-/* Integrate i18n into dashboard */
-
-/* Trigger ticket modal from dashboard */
-
-/* Restructure dashboard to 3-column layout */
-
-/* Remove unused imports */
