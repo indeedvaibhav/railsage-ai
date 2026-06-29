@@ -1,100 +1,153 @@
 # 🚂 RailSage AI
 
-> **Autonomous Railway Operations Assistant** powered by Claude AI  
-> Built for the **FAR AWAY Hackathon 2026**
+> **India's Smartest Railway Companion** — powered by Claude AI
+> Built for the **FAR AWAY Hackathon 2026** · Theme: *Autonomous Systems for Public Infrastructure*
 
-![RailSage AI](https://img.shields.io/badge/Status-Live-34d399?style=flat-square) ![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square) ![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square) ![Claude AI](https://img.shields.io/badge/Claude-AI-ff6b35?style=flat-square)
+[![Status](https://img.shields.io/badge/Status-Live-34d399?style=flat-square)](https://railsage-ai.vercel.app)
+[![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square)](https://vitejs.dev)
+[![Claude AI](https://img.shields.io/badge/Claude-AI-ff6b35?style=flat-square)](https://anthropic.com)
+[![React Router](https://img.shields.io/badge/React_Router-7-ca4245?style=flat-square)](https://reactrouter.com)
+
+🌐 **Live Demo:** [railsage-ai.vercel.app](https://railsage-ai.vercel.app)
+📁 **Repository:** [github.com/indeedvaibhav/railsage-ai](https://github.com/indeedvaibhav/railsage-ai)
+👥 **Team:** Aditya Dixit & Vaibhav Tripathi
 
 ---
 
 ## Overview
 
-RailSage AI is a next-generation railway operations command center that autonomously monitors, reasons about, and responds to disruptions across India's railway network. It combines real-time train telemetry, weather data, and AI-powered reasoning to provide instant rerouting decisions, multilingual passenger announcements, and predictive maintenance alerts.
+RailSage AI is a next-generation autonomous railway assistant that helps India's 24M+ daily passengers make smarter travel decisions. It combines real-time train telemetry, weather data, and Claude AI-powered reasoning to deliver proactive delay alerts, intelligent rerouting decisions, multilingual passenger announcements, and predictive maintenance alerts — before passengers even leave home.
 
-The system features a cinematic landing experience that transitions into a full-featured operations dashboard with three coordinated panels: Network Map, AI Reasoning Feed, and Multilingual Announcements.
+The app features a **cinematic landing experience** that transitions into a **multi-page command center** with dedicated pages for live tracking, AI-powered alerts, journey planning, and a natural-language assistant.
 
 ---
 
 ## ✨ Features
 
-### Cinematic Landing Page
-- Full-screen hero image with smooth zoom animation
+### 🎬 Cinematic Landing Page
+- Full-screen hero image with smooth GSAP zoom animation
+- Particle dissolve transition powered by canvas rendering
 - Film grain texture overlay for cinematic feel
-- Particle dissolve transition to dashboard
 - Ambient sound design with low-frequency rumble
-- Skip intro button for instant access
+- Skip intro button for instant dashboard access
 
-### Operations Dashboard
-- **3-Column Command Center** — Map | AI Feed | Announcements
-- **Live Clock** with IST / JST / UTC timezone toggles
-- **AI Agent Status** with real-time monitoring pulse
-- **4 KPI Metric Cards** with count-up animation on load
+### ⚡ Dashboard — Network Overview
+- Live KPI cards: Active Trains, On Time %, Delayed %, Incidents
+- Real-time clock with IST / JST / UTC timezone toggles
+- AI Agent status with animated pulse indicator
+- Active disruption alert banner
+- Quick-action cards linking to all pages
+- Top 4 active trains with one-tap navigation to Tracker
 
-### Network Map (Leaflet)
-- Dark-themed India railway map with CARTO tiles
-- Color-coded train position dots (green/yellow/red)
+### 🗺️ Tracker — Live Train Map
+- Dark-themed India railway map (Leaflet + CARTO tiles)
+- Color-coded train position dots (green / yellow / red)
 - Clickable train markers with rich popup cards
-- Route polylines for selected train tracking
+- Route polylines for selected train
 - Signal fault badge with red pulse indicator
-- Station labels with overlap prevention
+- Full train list + 6-field detail panel side-by-side
 
-### AI Reasoning Feed
-- 9-step reasoning sequence with step numbers
-- Blinking cursor on active reasoning step
-- Green checkmarks on completed steps
-- Auto-scroll to latest step
-- Real-time timestamps on each step
+### ⚠️ Alerts — AI Operations Center
+- **Scenario Simulator** — 4 triggers: Signal Failure, Cyclone Warning, Track Block, Crowd Surge
+- **AI Reasoning Feed** — 9-step autonomous reasoning with live timestamps, blinking cursor on active step, green checkmarks on completed steps
+- **Incident Card** — APPROVE or OVERRIDE AI recommendations with operator input
+- **Multilingual Announcements** — English, Hindi (Devanagari), Japanese (Keigo) — updated per scenario
+- Maintenance ticket modal (MTX-XXXX) auto-raised by AI agent
+- Active disruption banner with severity levels
 
-### Scenario Simulator
-- 4 trigger buttons: Signal Failure, Cyclone Warning, Track Block, Crowd Surge
-- Each scenario generates unique 9-step reasoning sequence
-- Active scenario highlights in red
-- Triggers new announcements and maintenance tickets
+### 🧭 Journey Planner
+- Origin → Destination input with date selection
+- AI-powered route suggestions *(coming soon)*
+- Designed for door-to-door journey planning
 
-### Incident Card
-- Live incident status (ACTIVE / RESOLVED)
-- APPROVE button to confirm AI recommendation
-- OVERRIDE button with text input for operator alternative
-- Color-coded status badges
+### 💬 Chat — Ask RailSage
+- Full-page natural language assistant powered by Claude API
+- Ask anything: train status, delays, alternatives, platform info
+- Quick-action chips: Check train status, Plan a journey, Find alternatives
+- Multilingual responses (EN / HI / JA)
 
-### Multilingual Announcements
-- English, Hindi (Devanagari), and Japanese (Keigo) announcements
-- BROADCAST button → SENT state with green tick
-- Hover border glow matching flag color
-- Updates dynamically per scenario
-
-### Train List & Detail Panel
-- 5 active trains with clickable selection
-- Cyan left border highlight on selected train
-- Color-coded delays (red >30min, yellow <30min, green on-time)
-- 6 detail boxes updating on train selection
-- Maintenance ticket modal on ticket number click
-
-### Responsive Design
-- Full 3-column layout on desktop
-- Bottom tab bar on mobile (<768px) switching between Map, AI Feed, Announcements
-- All panels adapt to screen size without breaking
-
-### Visual Polish
-- Faint scanline animation (opacity 0.03, old monitor feel)
-- Consistent panel borders (#1C2744)
-- Film grain texture on landing page
-- All animations use transform/opacity for 60fps performance
+### ⚙️ Settings
+- Language toggle: English, हिंदी, 日本語
+- App info and team credits
 
 ---
 
 ## 🛠 Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|---|---|
 | Frontend | React 19, Vite 8 |
+| Routing | React Router 7 |
 | Styling | Tailwind CSS 4, Vanilla CSS |
 | Animation | GSAP 3, Framer Motion 12 |
 | Maps | Leaflet 1.9, React Leaflet 5 |
-| AI | Anthropic Claude API (via backend) |
+| AI | Anthropic Claude API (`claude-sonnet-4-6`) |
 | Backend | Node.js, Express 5 |
-| APIs | IRCTC (via RapidAPI), Open-Meteo Weather |
+| External APIs | IRCTC via RapidAPI, Open-Meteo Weather |
 | Fonts | Inter, Bebas Neue, Noto Sans Devanagari, Noto Sans JP |
+| Deploy | Vercel (frontend), Node.js server |
+
+---
+
+## 📁 Project Structure
+
+```
+railsage-ai/
+├── public/
+│   ├── train-mountain.jpg          # Hero image
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/
+│   ├── components/
+│   │   ├── LandingPage.jsx         # Cinematic intro with GSAP + particles
+│   │   ├── Navbar.jsx              # Top navigation bar (desktop)
+│   │   ├── MobileTabBar.jsx        # Bottom tab bar (mobile)
+│   │   ├── Dashboard.jsx           # Overview: KPIs + quick actions + train summary
+│   │   ├── DashboardStatusBar.jsx  # Live clock + metrics + agent status
+│   │   ├── DisruptionBanner.jsx    # Active alert banner
+│   │   ├── TrainMap.jsx            # Leaflet map with live train positions
+│   │   ├── TrainListPanel.jsx      # Scrollable list of active trains
+│   │   ├── TrainDetailPanel.jsx    # 6-field detail view for selected train
+│   │   ├── AgentReasoningFeed.jsx  # 9-step AI reasoning with animations
+│   │   ├── IncidentCard.jsx        # Approve / Override incident handler
+│   │   ├── ScenarioSimulator.jsx   # 4 disruption scenario triggers
+│   │   ├── AnnouncementsPanel.jsx  # EN / HI / JA multilingual broadcasts
+│   │   ├── ChatPanel.jsx           # Full-page Claude AI chat interface
+│   │   ├── MaintenanceTicketModal.jsx
+│   │   └── ChatMessage.jsx
+│   ├── layouts/
+│   │   └── AppLayout.jsx           # Shared layout: Navbar + Outlet + MobileTabBar
+│   ├── pages/
+│   │   ├── DashboardPage.jsx       # /dashboard
+│   │   ├── TrackerPage.jsx         # /tracker
+│   │   ├── AlertsPage.jsx          # /alerts
+│   │   ├── ChatPage.jsx            # /chat
+│   │   ├── JourneyPage.jsx         # /journey
+│   │   └── SettingsPage.jsx        # /settings
+│   ├── contexts/
+│   │   ├── AgentContext.jsx        # Scenario + incident + metrics state
+│   │   ├── TrainContext.jsx        # Train data + selection state
+│   │   └── LanguageContext.jsx     # i18n (EN / HI / JA)
+│   ├── data/
+│   │   ├── trainData.js            # Mock train database
+│   │   ├── disruptions.js          # Active disruptions
+│   │   ├── stationData.js          # Station metadata
+│   │   ├── translations.js         # i18n strings
+│   │   └── bootstrapData.js        # Seed data for initial render
+│   ├── services/
+│   │   ├── trainService.js         # IRCTC + Open-Meteo API integration
+│   │   └── chatService.js          # Claude API integration
+│   ├── utils/
+│   │   └── particleScatter.js      # Canvas particle animation for landing
+│   ├── App.jsx                     # Route definitions
+│   ├── main.jsx                    # BrowserRouter entry point
+│   └── index.css                   # Full design system + CSS variables
+├── server.js                       # Express API proxy (keeps keys server-side)
+├── .env.example
+├── package.json
+└── README.md
+```
 
 ---
 
@@ -104,7 +157,7 @@ The system features a cinematic landing experience that transitions into a full-
 - Node.js 18+
 - npm 9+
 - Anthropic API key (for AI chat)
-- RapidAPI key (for train data)
+- RapidAPI key (for IRCTC train data)
 
 ### Setup
 
@@ -116,77 +169,38 @@ cd railsage-ai
 # Install dependencies
 npm install
 
-# Copy environment variables
+# Copy and fill in environment variables
 cp .env.example .env
 # Edit .env with your API keys
 
-# Start the backend server
+# Terminal 1 — Start the backend proxy
 npm run server
 
-# In another terminal, start the frontend
+# Terminal 2 — Start the frontend
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
+App runs at `http://localhost:5173`
 
 ### Environment Variables
 
-```
+```env
 ANTHROPIC_API_KEY=your-anthropic-api-key
 WEATHER_API_KEY=your-openweathermap-api-key
 RAILWAY_API_KEY=your-rapidapi-key
 ```
 
----
+### Routes
 
-## 📁 Project Structure
-
-```
-railsage-ai/
-├── public/
-│   ├── train-mountain.jpg    # Hero image
-│   ├── favicon.svg           # App icon
-│   └── icons.svg             # UI icons
-├── src/
-│   ├── components/
-│   │   ├── LandingPage.jsx         # Cinematic intro
-│   │   ├── Dashboard.jsx           # 3-column layout
-│   │   ├── TopBar.jsx              # Search + branding
-│   │   ├── DashboardStatusBar.jsx  # Clock + metrics
-│   │   ├── TrainMap.jsx            # Leaflet map
-│   │   ├── AgentReasoningFeed.jsx  # 9-step AI feed
-│   │   ├── IncidentCard.jsx        # Approve/Override
-│   │   ├── ScenarioSimulator.jsx   # 4 scenario triggers
-│   │   ├── AnnouncementsPanel.jsx  # Multilingual alerts
-│   │   ├── TrainListPanel.jsx      # 5 train list
-│   │   ├── TrainDetailPanel.jsx    # 6 detail boxes
-│   │   ├── MaintenanceTicketModal.jsx
-│   │   ├── MobileTabBar.jsx        # Mobile navigation
-│   │   ├── ChatPanel.jsx           # AI chat interface
-│   │   └── ...
-│   ├── contexts/
-│   │   ├── AgentContext.jsx        # Scenario + incident state
-│   │   ├── TrainContext.jsx        # Train data + selection
-│   │   └── LanguageContext.jsx     # i18n (EN/HI/JA)
-│   ├── data/
-│   │   ├── trainData.js            # Mock train database
-│   │   ├── disruptions.js          # Active disruptions
-│   │   ├── stationData.js          # Station metadata
-│   │   ├── translations.js         # i18n strings
-│   │   └── bootstrapData.js        # Initial dashboard data
-│   ├── services/
-│   │   ├── trainService.js         # Train API integration
-│   │   └── chatService.js          # Claude AI integration
-│   ├── utils/
-│   │   └── particleScatter.js      # Landing page particles
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css                   # Full design system
-├── server.js                       # Express API proxy
-├── .env.example
-├── package.json
-└── README.md
-```
+| Route | Page |
+|---|---|
+| `/` | Landing page (cinematic intro) |
+| `/dashboard` | Network overview |
+| `/tracker` | Live train map + list |
+| `/alerts` | AI reasoning + incidents |
+| `/journey` | Journey planner |
+| `/chat` | Ask RailSage (Claude AI) |
+| `/settings` | Language + preferences |
 
 ---
 
@@ -194,33 +208,43 @@ railsage-ai/
 
 **FAR AWAY Hackathon 2026** — Theme: *Autonomous Systems for Public Infrastructure*
 
-RailSage AI demonstrates how autonomous AI agents can transform railway operations by:
-1. **Monitoring** — Continuous scanning of train positions, delays, and weather
-2. **Reasoning** — Multi-step AI analysis of disruptions and cascade impacts
-3. **Acting** — Automated rerouting, announcements, and maintenance dispatch
-4. **Transparency** — Full reasoning feed visible to human operators
-5. **Multilingual** — Serving India's diverse passenger base in 3 languages
+RailSage AI demonstrates a full **Monitor → Reason → Act → Explain** loop for autonomous railway operations:
+
+1. **Monitor** — Continuous scanning of 847+ active trains, delays, and weather across all zones
+2. **Reason** — Multi-step Claude AI analysis of disruptions and cascade impacts (9-step feed)
+3. **Act** — Automated rerouting decisions, multilingual passenger announcements, maintenance dispatch
+4. **Explain** — Full reasoning chain visible to human operators with Approve / Override control
+5. **Multilingual** — Serving India's diverse passenger base in English, Hindi, and Japanese
+
+### The Problem We're Solving
+
+> 24M+ daily Indian Railways passengers have zero proactive intelligence. They learn of delays after leaving home, get no AI-powered recommendations, and must piece together information from a dozen fragmented sources.
+
+RailSage flips this: **Know Before You Go.**
 
 ---
 
-## 📸 Demo
+## 📸 Screenshots
 
-*Screenshot placeholder — replace with actual screenshot*
+| Page | Description |
+|---|---|
+| Landing | Cinematic hero with particle dissolve |
+| Dashboard | KPI overview + quick actions + active trains |
+| Tracker | Live map + train list + detail panel |
+| Alerts | AI reasoning feed + incident card + announcements |
+| Chat | Full-page Claude AI assistant |
 
 ---
 
-## 👤 Author
+## 👥 Team
 
-**Vaibhav** — [@indeedvaibhav](https://github.com/indeedvaibhav)
+| Name | GitHub |
+|---|---|
+| Vaibhav Tripathi | [@indeedvaibhav](https://github.com/indeedvaibhav) |
+| Aditya Dixit | — |
 
 ---
 
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-<!-- Update README with feature list -->
-
-<!-- Add setup instructions to README -->
-
-<!-- Document hackathon context -->
