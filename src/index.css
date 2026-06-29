@@ -3784,6 +3784,505 @@ body {
   color: #4a6a82;
 }
 
+/* ── Tracker Page ───────────────────────────────── */
+
+.tracker-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .tracker-page {
+    flex-direction: row;
+  }
+}
+
+/* Map pane */
+.tracker-map-pane {
+  height: 45vh;
+  min-height: 240px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .tracker-map-pane {
+    flex: 1;
+    height: 100%;
+    min-height: unset;
+  }
+}
+
+/* Detail pane */
+.tracker-detail-pane {
+  width: 100%;
+  overflow-y: auto;
+  background: #080d1a;
+  border-top: 1px solid #1C2744;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .tracker-detail-pane {
+    width: 360px;
+    flex-shrink: 0;
+    border-top: none;
+    border-left: 1px solid #1C2744;
+    height: 100%;
+  }
+}
+
+/* ── Search ─────────────────────────────────────── */
+
+.tracker-search-wrap {
+  padding: 12px;
+  position: relative;
+  border-bottom: 1px solid #1C2744;
+  flex-shrink: 0;
+}
+
+.tracker-search-box {
+  display: flex;
+  align-items: center;
+  background: #0d1525;
+  border: 1px solid #1C2744;
+  border-radius: 10px;
+  padding: 0 12px;
+  gap: 8px;
+  transition: border-color 0.15s;
+}
+
+.tracker-search-box:focus-within {
+  border-color: #00d4ff;
+}
+
+.tracker-search-icon { color: #4a6a82; flex-shrink: 0; }
+
+.tracker-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+.tracker-search-input::placeholder { color: #4a6a82; }
+
+.tracker-search-clear {
+  background: none;
+  border: none;
+  color: #4a6a82;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px;
+  transition: color 0.15s;
+}
+.tracker-search-clear:hover { color: #ffffff; }
+
+/* Dropdown */
+.tracker-search-dropdown {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 12px;
+  right: 12px;
+  background: #0d1525;
+  border: 1px solid #1C2744;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  z-index: 50;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.tracker-search-result {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1C274420;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+.tracker-search-result:hover { background: #111827; }
+.tracker-search-result:last-child { border-bottom: none; }
+
+.tracker-result-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tracker-result-number { font-size: 11px; font-weight: 600; color: #4a6a82; }
+.tracker-result-name   { font-size: 13px; font-weight: 600; color: #ffffff; }
+.tracker-result-route  { font-size: 11px; color: #4a6a82; }
+
+.tracker-no-results {
+  padding: 14px;
+  font-size: 13px;
+  color: #4a6a82;
+  text-align: center;
+}
+
+/* Status badges */
+.tracker-result-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.tracker-badge--green { background: #052010; color: #22c55e; }
+.tracker-badge--amber { background: #1a1000; color: #f59e0b; }
+.tracker-badge--red   { background: #1a0505; color: #ef4444; }
+
+/* ── Loading / Error ────────────────────────────── */
+
+.tracker-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px;
+  color: #4a6a82;
+  font-size: 13px;
+}
+
+.tracker-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #1C2744;
+  border-top-color: #00d4ff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.tracker-error {
+  margin: 12px;
+  padding: 12px;
+  background: #1a0505;
+  border: 1px solid #ef444433;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #ef4444;
+}
+
+/* ── All trains list (no selection) ────────────── */
+
+.tracker-all-trains {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.tracker-all-trains-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4a6a82;
+  margin-bottom: 4px;
+}
+
+.tracker-train-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #0d1525;
+  border: 1px solid #1C2744;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+.tracker-train-row:hover { border-color: #2a3f5f; background: #111827; }
+
+.tracker-train-row-left { display: flex; flex-direction: column; gap: 2px; }
+.tracker-train-row-num  { font-size: 11px; font-weight: 600; color: #4a6a82; }
+.tracker-train-row-name { font-size: 13px; font-weight: 600; color: #ffffff; }
+.tracker-train-row-route { font-size: 11px; color: #4a6a82; }
+
+/* ── Selected train detail ──────────────────────── */
+
+.tracker-detail {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+/* Train header */
+.tracker-train-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1C2744;
+}
+
+.tracker-train-header-left { display: flex; flex-direction: column; gap: 2px; }
+.tracker-train-num   { font-size: 11px; font-weight: 600; color: #4a6a82; }
+.tracker-train-name  { font-size: 15px; font-weight: 700; color: #ffffff; }
+.tracker-train-route { font-size: 12px; color: #4a6a82; }
+
+.tracker-train-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Info grid */
+.tracker-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tracker-info-box {
+  background: #0d1525;
+  border: 1px solid #1C2744;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tracker-info-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4a6a82;
+}
+
+.tracker-info-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Delay reason */
+.tracker-delay-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #1a0f00;
+  border: 1px solid #f59e0b22;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #d97706;
+  line-height: 1.5;
+}
+
+.tracker-delay-reason svg { flex-shrink: 0; margin-top: 1px; }
+
+/* Weather */
+.tracker-weather {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #0a1628;
+  border: 1px solid #1e3a5f;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #93c5fd;
+}
+
+.tracker-weather-city {
+  margin-left: auto;
+  color: #4a6a82;
+  font-size: 11px;
+}
+
+/* AI suggestion */
+.tracker-ai-suggestion {
+  background: #0a1a10;
+  border: 1px solid #22c55e33;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tracker-ai-suggestion-header {
+  display: flex;
+  align-items: center;
+}
+
+.tracker-ai-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #22c55e;
+  letter-spacing: 0.05em;
+}
+
+.tracker-ai-text {
+  font-size: 12px;
+  color: #86efac;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tracker-ai-cta {
+  background: none;
+  border: none;
+  color: #22c55e;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: opacity 0.15s;
+}
+.tracker-ai-cta:hover { opacity: 0.7; }
+
+/* Progress bar */
+.tracker-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tracker-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tracker-progress-count {
+  font-size: 11px;
+  color: #4a6a82;
+}
+
+.tracker-progress-bar {
+  height: 4px;
+  background: #1C2744;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.tracker-progress-fill {
+  height: 100%;
+  background: #00d4ff;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* Upcoming stations */
+.tracker-stations {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8px;
+}
+
+.tracker-stations-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tracker-station-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.tracker-station-line-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.tracker-station-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1C2744;
+  border: 2px solid #2a3f5f;
+  flex-shrink: 0;
+}
+
+.tracker-station-dot--current {
+  background: #00d4ff;
+  border-color: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff88;
+}
+
+.tracker-station-connector {
+  width: 1px;
+  height: 28px;
+  background: #1C2744;
+  margin: 2px 0;
+}
+
+.tracker-station-info {
+  padding-bottom: 16px;
+  flex: 1;
+}
+
+.tracker-station-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.tracker-station-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b8fa8;
+}
+
+.tracker-station-name--current {
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.tracker-station-now {
+  font-size: 10px;
+  font-weight: 700;
+  color: #00d4ff;
+  background: #001a2e;
+  border: 1px solid #00d4ff44;
+  border-radius: 4px;
+  padding: 1px 6px;
+  letter-spacing: 0.08em;
+}
+
+.tracker-station-times {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: #4a6a82;
+}
+
 /* Add initial CSS base */
 
 /* Add cinematic film grain overlay */
