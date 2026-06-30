@@ -1,8 +1,10 @@
 // Train service — calls our Express backend which proxies rappid.in
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export async function searchTrains(query) {
   try {
-    const res  = await fetch(`/api/train/search?query=${encodeURIComponent(query)}`);
+    const res  = await fetch(`${API_BASE}/api/train/search?query=${encodeURIComponent(query)}`);
     const json = await res.json();
     if (!json.data) return [];
     const list = Array.isArray(json.data) ? json.data : [];
@@ -15,7 +17,7 @@ export async function searchTrains(query) {
 
 export async function fetchTrainStatus(trainNo) {
   try {
-    const res  = await fetch(`/api/train/status/${trainNo}`);
+    const res  = await fetch(`${API_BASE}/api/train/status/${trainNo}`);
     const json = await res.json();
     if (!json.data) return null;
     return normalizeStatus(json.data);
@@ -27,7 +29,7 @@ export async function fetchTrainStatus(trainNo) {
 
 export async function fetchTrainSchedule(trainNo) {
   try {
-    const res  = await fetch(`/api/train/schedule/${trainNo}`);
+    const res  = await fetch(`${API_BASE}/api/train/schedule/${trainNo}`);
     const json = await res.json();
     if (!json.data) return null;
     return normalizeSchedule(json.data);
@@ -39,7 +41,7 @@ export async function fetchTrainSchedule(trainNo) {
 
 export async function fetchTrainsBetween(from, to) {
   try {
-    const res  = await fetch(`/api/train/between?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
+    const res  = await fetch(`${API_BASE}/api/train/between?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
     const json = await res.json();
     if (!json.data) return [];
     return (Array.isArray(json.data) ? json.data : []).map(normalizeTrain).filter(Boolean);
@@ -51,7 +53,7 @@ export async function fetchTrainsBetween(from, to) {
 
 export async function fetchWeather(lat, lng) {
   try {
-    const res  = await fetch(`/api/weather?lat=${lat}&lon=${lng}`);
+    const res  = await fetch(`${API_BASE}/api/weather?lat=${lat}&lon=${lng}`);
     const json = await res.json();
     return json.data || null;
   } catch (e) {

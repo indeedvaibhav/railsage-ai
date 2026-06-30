@@ -6,9 +6,11 @@ Never use technical railway jargon. Keep answers short and clear.
 If you have train data in context, reference it specifically.
 If data is missing or unavailable, say so honestly — never make up train info.`;
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export async function sendMessage(messages, { trainContext = '', language = 'en' } = {}) {
   try {
-    const res = await fetch('/api/chat', {
+    const res = await fetch(`${API_BASE}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
