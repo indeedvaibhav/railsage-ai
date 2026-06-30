@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import TrainMap from "../components/TrainMap";
 import { useTrain } from "../contexts/TrainContext";
 import { useNavigate } from "react-router-dom";
+import { searchStations } from '../data/stations'
 
 export default function TrackerPage() {
   const {

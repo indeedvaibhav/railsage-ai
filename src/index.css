@@ -4305,6 +4305,95 @@ body {
 
 .tracker-back-btn:hover { color: #00d4ff; }
 
+
+/* Journey station dropdown */
+.journey-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #0d1525;
+  border: 1px solid #1C2744;
+  border-radius: 8px;
+  z-index: 60;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.journey-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  transition: background 0.1s;
+}
+.journey-dropdown-item:hover { background: #111827; }
+
+.journey-dropdown-name { color: #ffffff; }
+.journey-dropdown-code { color: #4a6a82; font-size: 11px; font-weight: 600; }
+
+.journey-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Journey results */
+.journey-results {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.journey-results-count {
+  font-size: 12px;
+  color: #4a6a82;
+  margin: 0 0 4px;
+}
+
+.journey-result-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d1525;
+  border: 1px solid #1C2744;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.journey-result-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.journey-result-number { font-size: 11px; font-weight: 600; color: #4a6a82; }
+.journey-result-name   { font-size: 14px; font-weight: 600; color: #ffffff; }
+.journey-result-route  { font-size: 12px; color: #4a6a82; }
+
+.journey-track-btn {
+  background: none;
+  border: 1px solid #00d4ff44;
+  color: #00d4ff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.journey-track-btn:hover { background: #001a2e; }
+
+
 /* Add initial CSS base */
 
 /* Add cinematic film grain overlay */
